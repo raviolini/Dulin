@@ -149,7 +149,7 @@ public class Main {
       shader = new Shader(
           Paths.get("src/main/resources/shaders/vertexShader.glsl"),
           Paths.get("src/main/resources/shaders/fragmentShader.glsl"));
-    } catch (IOException e) {
+    } catch (Exception e) {
       e.printStackTrace();
     }
     /******************** SHADER ********************/
