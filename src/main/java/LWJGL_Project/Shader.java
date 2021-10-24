@@ -7,18 +7,20 @@ import java.io.IOException;
 
 import static org.lwjgl.opengl.GL33.*;
 
+import LWJGL_Project.Exceptions.ShaderCompilationException;
+
 public class Shader {
   public Shader() {}
 
-  public Shader(String vertexShaderPath, String fragmentShaderPath) throws IOException {
+  public Shader(String vertexShaderPath, String fragmentShaderPath) throws IOException, ShaderCompilationException {
     this(Paths.get(vertexShaderPath), Paths.get(fragmentShaderPath));
   }
 
-  public Shader(Path vertexShaderPath, Path fragmentShaderPath) throws IOException {
+  public Shader(Path vertexShaderPath, Path fragmentShaderPath) throws IOException, ShaderCompilationException {
     loadFromFile(vertexShaderPath, fragmentShaderPath);
   }
 
-  public void loadFromFile(Path vertexShaderPath, Path fragmentShaderPath) throws IOException {
+  public void loadFromFile(Path vertexShaderPath, Path fragmentShaderPath) throws IOException, ShaderCompilationException {
     String shaderSource;
 
     int[] success = new int[1];
@@ -35,8 +37,7 @@ public class Shader {
       glGetShaderiv(vertexShaderHandle, GL_COMPILE_STATUS, success);
 
       if (success[0] == GL_FALSE) {
-        String errorLog = glGetShaderInfoLog(vertexShaderHandle);
-        System.out.println("Error compiling vertex shader: " + errorLog);
+        throw new ShaderCompilationException(vertexShaderPath, vertexShaderHandle);
       }
     } catch(IOException e) {
       glDeleteShader(vertexShaderHandle);
@@ -52,8 +53,7 @@ public class Shader {
       glGetShaderiv(fragmentShaderHandle, GL_COMPILE_STATUS, success);
 
       if (success[0] == GL_FALSE) {
-        String errorLog = glGetShaderInfoLog(fragmentShaderHandle);
-        System.out.println("Error compiling fragment shader: " + errorLog);
+        throw new ShaderCompilationException(fragmentShaderPath, fragmentShaderHandle);
       }
     } catch (IOException e) {
       glDeleteShader(fragmentShaderHandle);
