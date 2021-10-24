@@ -1,9 +1,8 @@
 package LWJGL_Project;
 
-import java.nio.file.Path;
-import java.nio.file.Files;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 import static org.lwjgl.opengl.GL33.*;
 
