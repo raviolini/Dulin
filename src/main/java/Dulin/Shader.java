@@ -1,4 +1,4 @@
-package LWJGL_Project;
+package Dulin;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,7 +7,7 @@ import java.io.IOException;
 
 import static org.lwjgl.opengl.GL33.*;
 
-import LWJGL_Project.Exceptions.ShaderCompilationException;
+import Dulin.Exceptions.ShaderCompilationException;
 
 public class Shader {
   public Shader() {}

@@ -1,9 +1,9 @@
 /*
  * LICENSE: Oooga booga what's license
  */
-package LWJGL_Project;
+package Dulin;
 
-import LWJGL_Project.engine.Window;
+import Dulin.engine.Window;
 
 public class Main {
   public static void main(String[] args) {

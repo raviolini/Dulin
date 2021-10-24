@@ -1,4 +1,4 @@
-package LWJGL_Project;
+package Dulin;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL12;

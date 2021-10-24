@@ -1,4 +1,4 @@
-package LWJGL_Project.Exceptions;
+package Dulin.Exceptions;
 
 import java.lang.Exception;
 import java.nio.IntBuffer;

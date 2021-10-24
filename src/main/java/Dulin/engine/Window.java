@@ -1,6 +1,6 @@
-package LWJGL_Project.engine;
+package Dulin.engine;
 
-import LWJGL_Project.Shader;
+import Dulin.Shader;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
