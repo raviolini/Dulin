@@ -23,7 +23,7 @@ public class Shader {
     int fragmentShaderHandle = glCreateShader(GL_FRAGMENT_SHADER);
 
     try {
-      shaderSource = new String(Files.readAllBytes(vertexShaderPath), StandardCharsets.UTF_8);
+      shaderSource = Files.readString(vertexShaderPath);
 
       glShaderSource(vertexShaderHandle, shaderSource);
       glCompileShader(vertexShaderHandle);
@@ -40,7 +40,7 @@ public class Shader {
     }
 
     try {
-      shaderSource = new String(Files.readAllBytes(fragmentShaderPath), StandardCharsets.UTF_8);
+      shaderSource = Files.readString(fragmentShaderPath);
 
       glShaderSource(fragmentShaderHandle, shaderSource);
       glCompileShader(fragmentShaderHandle);

@@ -13,6 +13,7 @@ import static org.lwjgl.opengl.GL33.*;
 import java.io.IOException;
 import java.nio.IntBuffer;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 import org.lwjgl.Version;
 import org.lwjgl.glfw.GLFWErrorCallback;
@@ -37,7 +38,7 @@ public class Main {
 
     // Terminate GLFW and free the error callback
     glfwTerminate();
-    glfwSetErrorCallback(null).free();
+    Objects.requireNonNull(glfwSetErrorCallback(null)).free();
   }
 
   private void init() {
@@ -81,6 +82,7 @@ public class Main {
       GLFWVidMode vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
 
       // Center the window
+      assert vidmode != null;
       glfwSetWindowPos(window, (vidmode.width() - pWidth.get(0)) / 2, (vidmode.height() - pHeight.get(0)) / 2);
     } // the stack frame is popped automatically
 
@@ -123,7 +125,7 @@ public class Main {
      ***********/
 
     /******************** Triangle ********************/
-    float vertices[] = { -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f };
+    float[] vertices = { -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f };
 
     int VBO = glGenBuffers();
     int VAO = glGenVertexArrays();
@@ -133,7 +135,7 @@ public class Main {
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
     glBufferData(GL_ARRAY_BUFFER, vertices, GL_STATIC_DRAW);
 
-    glVertexAttribPointer(0, 3, GL_FLOAT, false, 3 * 4, 0l);
+    glVertexAttribPointer(0, 3, GL_FLOAT, false, 3 * 4, 0L);
     glEnableVertexAttribArray(0);
 
     glBindVertexArray(0);
@@ -143,14 +145,15 @@ public class Main {
     Shader shader = null;
     try {
       shader = new Shader(
-          Paths.get("assets/shaders/vertexShader.glsl"),
-          Paths.get("assets/shaders/fragmentShader.glsl"));
+          Paths.get("src/main/resources/shaders/vertexShader.glsl"),
+          Paths.get("src/main/resources/shaders/fragmentShader.glsl"));
     } catch (IOException e) {
       e.printStackTrace();
     }
     /******************** SHADER ********************/
 
     glBindVertexArray(VAO);
+    assert shader != null;
     shader.use();
 
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
