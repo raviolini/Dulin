@@ -1,13 +1,18 @@
 package LWJGL_Project;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.Files;
+import java.io.IOException;
 
 import static org.lwjgl.opengl.GL33.*;
 
 public class Shader {
   public Shader() {}
+
+  public Shader(String vertexShaderPath, String fragmentShaderPath) throws IOException {
+    this(Paths.get(vertexShaderPath), Paths.get(fragmentShaderPath));
+  }
 
   public Shader(Path vertexShaderPath, Path fragmentShaderPath) throws IOException {
     loadFromFile(vertexShaderPath, fragmentShaderPath);
