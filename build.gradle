@@ -3,10 +3,7 @@ apply plugin: 'jacoco'
 apply plugin: 'application'
 
 mainClassName = 'LWJGL_Project.Main'
-/*
-project.ext.lwjglVersion = "3.2.3"
-project.ext.lwjglNatives = "natives-linux"
-*/
+
 import org.gradle.internal.os.OperatingSystem
 
 project.ext.lwjglVersion = "3.2.3"
