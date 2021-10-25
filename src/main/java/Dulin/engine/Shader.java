@@ -70,6 +70,7 @@ public class Shader {
     glGetProgramiv(programHandle, GL_LINK_STATUS, success);
 
     if (success[0] == GL_FALSE) {
+      glDeleteProgram(programHandle);
       throw new ShaderLinkageException(programHandle);
     }
 
