@@ -1,6 +1,5 @@
-package Dulin.Exceptions;
+package Dulin.engine.exceptions;
 
-import java.lang.Exception;
 import java.nio.IntBuffer;
 import java.nio.file.Path;
 
@@ -8,7 +7,7 @@ import org.lwjgl.BufferUtils;
 
 import static org.lwjgl.opengl.GL33.*;
 
-public class ShaderCompilationException extends Exception {
+public class ShaderCompilationException extends ShaderException {
   public ShaderCompilationException(Path shaderPath, int shaderHandle) {
     super(shaderPath.toString() + " (" + getShaderType(shaderHandle) + "):\n" + glGetShaderInfoLog(shaderHandle));
   }
