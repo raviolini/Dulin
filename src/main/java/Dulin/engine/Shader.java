@@ -1,4 +1,4 @@
-package Dulin;
+package Dulin.engine;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -7,20 +7,22 @@ import java.io.IOException;
 
 import static org.lwjgl.opengl.GL33.*;
 
-import Dulin.Exceptions.ShaderCompilationException;
+import Dulin.engine.exceptions.ShaderCompilationException;
+import Dulin.engine.exceptions.ShaderLinkageException;
+import Dulin.engine.exceptions.ShaderException;
 
 public class Shader {
   public Shader() {}
 
-  public Shader(String vertexShaderPath, String fragmentShaderPath) throws IOException, ShaderCompilationException {
+  public Shader(String vertexShaderPath, String fragmentShaderPath) throws IOException, ShaderException {
     this(Paths.get(vertexShaderPath), Paths.get(fragmentShaderPath));
   }
 
-  public Shader(Path vertexShaderPath, Path fragmentShaderPath) throws IOException, ShaderCompilationException {
+  public Shader(Path vertexShaderPath, Path fragmentShaderPath) throws IOException, ShaderException {
     loadFromFile(vertexShaderPath, fragmentShaderPath);
   }
 
-  public void loadFromFile(Path vertexShaderPath, Path fragmentShaderPath) throws IOException, ShaderCompilationException {
+  public void loadFromFile(Path vertexShaderPath, Path fragmentShaderPath) throws IOException, ShaderException {
     String shaderSource;
 
     int[] success = new int[1];
@@ -68,8 +70,7 @@ public class Shader {
     glGetProgramiv(programHandle, GL_LINK_STATUS, success);
 
     if (success[0] == GL_FALSE) {
-      String errorLog = glGetProgramInfoLog(programHandle);
-      System.out.println("Error linking shader program: " + errorLog);
+      throw new ShaderLinkageException(programHandle);
     }
 
     glDeleteShader(vertexShaderHandle);
