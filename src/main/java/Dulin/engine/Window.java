@@ -56,8 +56,7 @@ public class Window{
 
   public void init(){
 
-    // Setup an error callback. The default implementation
-    // will print the error message in System.err.
+    // Setup an error callback
     GLFWErrorCallback.createPrint(System.err).set();
 
     // Initialize GLFW. Most GLFW functions will not work before doing this.
@@ -66,9 +65,9 @@ public class Window{
     }
 
     // Configure GLFW
-    glfwDefaultWindowHints(); // optional, the current window hints are already the default
-    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE); // the window will stay hidden after creation
-    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE); // the window will be resizable
+    glfwDefaultWindowHints();
+    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
     // Create the window
     glfwWindow = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
@@ -76,8 +75,7 @@ public class Window{
       throw new RuntimeException("Failed to create the GLFW window");
     }
 
-    // Setup a key callback. It will be called every time a key is pressed, repeated
-    // or released.
+    // Setup a key callback. It will be called every time a key is pressed, repeated, or released
     glfwSetKeyCallback(glfwWindow, (window, key, scancode, action, mods) -> {
       if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) {
         glfwSetWindowShouldClose(window, true); // We will detect this in the rendering loop
@@ -112,36 +110,7 @@ public class Window{
   public void loop(){
     GL.createCapabilities();
 
-    /**********
-     * STRT TEXTURE ********** int textureHandle = glGenTextures();
-     * glBindTexture(GL_TEXTURE_2D, textureHandle);
-     *
-     * glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-     * glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-     * glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-     * glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-     *
-     * stbi_set_flip_vertically_on_load(true);
-     *
-     * int[] width = new int[1], height = new int[1], nrChannels = new int[1];
-     * ByteBuffer data = stbi_load("assets/images/container.jpg", width, height,
-     * nrChannels, 3);
-     *
-     * if (data == null) { throw new RuntimeException("Failed to load a texture
-     * file!" + System.lineSeparator() + stbi_failure_reason()); }
-     *
-     * glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width[0], height[0], 0, GL_RGB,
-     * GL_UNSIGNED_BYTE, data); glGenerateMipmap(GL_TEXTURE_2D);
-     *
-     * glBindTexture(GL_TEXTURE_2D, 0);
-     *
-     * stbi_image_free(data); END' TEXTURE
-     ***********/
-    /*IDK WHAT IS THIS*/
-    //BufferedImage image = TextureLoader.loadImage("src/main/resources/images/wotah-texture.png");//The path is inside the jar file
-    //int textureID = TextureLoader.loadTexture(image);
-
-    /******************** Triangle ********************/
+    // Triangle
     float[] vertices = { -0.5f, -0.5f, 0.0f, 0.5f, -0.5f, 0.0f, 0.0f, 0.5f, 0.0f };
 
     int VBO = glGenBuffers();
@@ -156,9 +125,9 @@ public class Window{
     glEnableVertexAttribArray(0);
 
     glBindVertexArray(0);
-    /******************** Triangle ********************/
+    // Triangle End
 
-    /******************** SHADER ********************/
+    // Shader
     Shader shader = null;
     try {
       shader = new Shader(
@@ -167,7 +136,7 @@ public class Window{
     } catch (Exception e) {
       e.printStackTrace();
     }
-    /******************** SHADER ********************/
+    // Shader End
 
     glBindVertexArray(VAO);
     assert shader != null;
@@ -176,7 +145,7 @@ public class Window{
     glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
 
     while (!glfwWindowShouldClose(glfwWindow)) {
-      glClear(GL_COLOR_BUFFER_BIT); // clear the framebuffer
+      glClear(GL_COLOR_BUFFER_BIT);
 
       glDrawArrays(GL_TRIANGLES, 0, 3);
 
