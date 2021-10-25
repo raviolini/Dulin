@@ -1,6 +1,6 @@
 package Dulin.engine;
 
-import Dulin.Shader;
+import Dulin.engine.Shader;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
