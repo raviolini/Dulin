@@ -1,4 +1,4 @@
-package Dulin;
+package Dulin.engine;
 
 import org.lwjgl.BufferUtils;
 import org.lwjgl.opengl.GL12;
@@ -7,6 +7,8 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.nio.ByteBuffer;
+
+import Dulin.Main;
 
 import static org.lwjgl.opengl.GL11.*;
 /*
