@@ -85,6 +85,11 @@ public class Shader {
     glUseProgram(programHandle);
   }
 
+  public void setInt(String uniformName, int value) {
+    assert(initialized);
+    glUniform1i(glGetUniformLocation(programHandle, uniformName), value);
+  }
+
   private int programHandle = -1;
   private boolean initialized = false;
 }
