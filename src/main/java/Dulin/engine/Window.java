@@ -70,7 +70,7 @@ public class Window{
     glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE);
 
     // Create the window
-    glfwWindow = glfwCreateWindow(300, 300, "Hello World!", NULL, NULL);
+    glfwWindow = glfwCreateWindow(this.width, this.height, this.title, NULL, NULL);
     if (glfwWindow == NULL) {
       throw new RuntimeException("Failed to create the GLFW window");
     }
