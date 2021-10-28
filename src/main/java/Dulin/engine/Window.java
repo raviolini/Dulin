@@ -1,5 +1,6 @@
 package Dulin.engine;
 
+import Dulin.engine.exceptions.R;
 import org.lwjgl.glfw.GLFWErrorCallback;
 import org.lwjgl.glfw.GLFWVidMode;
 import org.lwjgl.opengl.GL;
@@ -121,7 +122,7 @@ public class Window{
     STBImage.stbi_set_flip_vertically_on_load(true);
 
     int[] width = new int[1], height = new int[1], nrChannels = new int[1];
-    ByteBuffer data = STBImage.stbi_load("src/main/resources/images/container.jpg", width, height, nrChannels, 3);
+    ByteBuffer data = STBImage.stbi_load(R.getImagesPathByName("container.jpg"), width, height, nrChannels, 3);
 
     if (data == null) {
       throw new RuntimeException("Failed to load a texture file!" + System.lineSeparator() + STBImage.stbi_failure_reason());
