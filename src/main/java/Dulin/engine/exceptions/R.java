@@ -11,11 +11,7 @@ import java.util.ArrayList;
   */
 public class R {
 
-  /*public static void main(String[] args) {
-    System.out.println(getTexturePathByName("grass.png"));
-  }*/
-
-  static String basePath = "src/main/resources/images/";
+  private static String basePath = "src/main/resources/images/";
   private static ArrayList<String> texturesPath = new ArrayList<>();
 
 
